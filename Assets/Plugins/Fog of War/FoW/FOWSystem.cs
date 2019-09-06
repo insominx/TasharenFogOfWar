@@ -31,7 +31,8 @@ public class FOWSystem : MonoBehaviour
 		public LOSChecks los = LOSChecks.None;
 		public Vector3 pos = Vector3.zero;
     public Quaternion rot = Quaternion.identity;
-    public float fov = 45f;
+    public float fovDegrees = 45f;
+    public float fovCosine = Mathf.Cos(Mathf.Deg2Rad * 45f);
 		public float inner = 0f;
 		public float outer = 0f;
 		public bool[] cachedBuffer;
@@ -385,7 +386,7 @@ public class FOWSystem : MonoBehaviour
 	/// Determine if the specified point is visible or not using line-of-sight checks.
 	/// </summary>
 
-	bool IsVisible (int sx, int sy, int fx, int fy, float outer, int sightHeight, int variance, Quaternion rot, float fov)
+	bool IsVisible (int sx, int sy, int fx, int fy, float outer, int sightHeight, int variance, Quaternion rot, float fovCosine)
 	{
 		int dx = Mathf.Abs(fx - sx);
 		int dy = Mathf.Abs(fy - sy);
@@ -400,7 +401,20 @@ public class FOWSystem : MonoBehaviour
 		float lerpFactor = 0f;
 
     Vector3 facing = rot * Vector3.forward;
-    if (Vector2.Angle((new Vector2(fx - sx, fy - sy)).normalized, new Vector2(facing.x, facing.z)) > fov) {
+    Vector3 direction = new Vector3(fx - sx, 0f, fy - sy);
+    float directionSquared = Vector3.Dot(direction, direction);
+
+    // Math explanation
+    // _n => normalized vector
+    // _u => unnormalized vector
+    // dot product => a_n * b_n = cos(theta)
+    // dot product => a_u * b_n = ||a_u|| * cos(theta)
+    // We don't like square roots so lets multiply it out
+    // a_u * (a_u * b_n) = a_u * a_u * cos(theta)
+
+    float cosineAngle = Vector3.Dot(facing, direction) * directionSquared;
+
+    if (cosineAngle < fovCosine * directionSquared) {
       return false;
     }
 
@@ -672,7 +686,7 @@ public class FOWSystem : MonoBehaviour
 
 							if (sx > -1 && sx < textureSize &&
 								sy > -1 && sy < textureSize &&
-								IsVisible(sx, sy, x, y, Mathf.Sqrt(dist), gh, variance, r.rot, r.fov))
+								IsVisible(sx, sy, x, y, Mathf.Sqrt(dist), gh, variance, r.rot, r.fovCosine))
 							{
 								mBuffer1[index] = white;
 							}
@@ -785,7 +799,7 @@ public class FOWSystem : MonoBehaviour
 
 							if (sx > -1 && sx < textureSize &&
 								sy > -1 && sy < textureSize &&
-								IsVisible(sx, sy, x, y, Mathf.Sqrt(dist), gh, variance, r.rot, r.fov))
+								IsVisible(sx, sy, x, y, Mathf.Sqrt(dist), gh, variance, r.rot, r.fovCosine))
 							{
 								r.cachedBuffer[(x - xmin) + (y - ymin) * size] = true;
 							}

@@ -72,11 +72,16 @@ public class FOWRevealer : MonoBehaviour
 
 			mRevealer.pos = mTrans.position;
       mRevealer.rot = mTrans.rotation;
-      mRevealer.fov = fieldOfView;
 			mRevealer.inner = range.x;
 			mRevealer.outer = range.y;
 			mRevealer.los = lineOfSightCheck;
 			mRevealer.isActive = true;
+
+      if (fieldOfView != mRevealer.fovDegrees)
+      {
+        mRevealer.fovDegrees = fieldOfView;
+        mRevealer.fovCosine = Mathf.Cos(Mathf.Deg2Rad * fieldOfView);
+      }
 		}
 		else if (mRevealer.isActive)
 		{

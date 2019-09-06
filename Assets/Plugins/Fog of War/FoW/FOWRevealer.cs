@@ -16,6 +16,8 @@ public class FOWRevealer : MonoBehaviour
 {
 	Transform mTrans;
 
+  public float fieldOfView = 45f;
+
 	/// <summary>
 	/// Radius of the area being revealed. Everything below X is always revealed. Everything up to Y may or may not be revealed.
 	/// </summary>
@@ -69,6 +71,8 @@ public class FOWRevealer : MonoBehaviour
 				mRevealer.isValid = false;
 
 			mRevealer.pos = mTrans.position;
+      mRevealer.rot = mTrans.rotation;
+      mRevealer.fov = fieldOfView;
 			mRevealer.inner = range.x;
 			mRevealer.outer = range.y;
 			mRevealer.los = lineOfSightCheck;

@@ -2,7 +2,7 @@
 
 //----------------------------------------------
 //           Tasharen Fog of War
-// Copyright © 2012-2015 Tasharen Entertainment
+// Copyright ï¿½ 2012-2015 Tasharen Entertainment
 //----------------------------------------------
 
 Shader "Image Effects/Fog of War"
@@ -23,11 +23,11 @@ Shader "Image Effects/Fog of War"
 			Cull Off
 			ZWrite Off
 			Fog { Mode off }
-					
+
 			CGPROGRAM
 			#pragma vertex vert_img
 			#pragma fragment frag vertex:vert
-			#pragma fragmentoption ARB_precision_hint_fastest 
+			#pragma fragmentoption ARB_precision_hint_fastest
 			#include "UnityCG.cginc"
 
 			sampler2D _MainTex;
@@ -65,16 +65,18 @@ Shader "Image Effects/Fog of War"
 			{
 				half4 original = tex2D(_MainTex, i.uv);
 
-			#if UNITY_UV_STARTS_AT_TOP
-				float2 depthUV = i.uv;
-				depthUV.y = lerp(depthUV.y, 1.0 - depthUV.y, _CamPos.w);
-				float depth = UNITY_SAMPLE_DEPTH(tex2D(_CameraDepthTexture, depthUV));
-				float3 pos = CamToWorld(depthUV, depth);
-			#else
-				float depth = UNITY_SAMPLE_DEPTH(tex2D(_CameraDepthTexture, i.uv));
+      // This assumption no longer appears to function as original intended, no longer needed?
+
+			// #if UNITY_UV_STARTS_AT_TOP
+			// 	float2 depthUV = i.uv;
+			// 	depthUV.y = lerp(depthUV.y, 1.0 - depthUV.y, _CamPos.w);
+			// 	float depth = 1.0 - UNITY_SAMPLE_DEPTH(tex2D(_CameraDepthTexture, depthUV));
+			// 	float3 pos = CamToWorld(depthUV, depth);
+			// #else
+				float depth = 1.0 - UNITY_SAMPLE_DEPTH(tex2D(_CameraDepthTexture, i.uv));
 				float3 pos = CamToWorld(i.uv, depth);
-			#endif
-	
+			// #endif
+
 				// Limit the fog of war to sea level
 				if (pos.y < 0.0)
 				{
@@ -82,10 +84,10 @@ Shader "Image Effects/Fog of War"
 					float3 dir = normalize(pos - _CamPos.xyz);
 					pos = _CamPos.xyz - dir * (_CamPos.y / dir.y);
 				}
-	
+
 				float2 uv = pos.xz * _Params.z + _Params.xy;
 				half4 fog = lerp(tex2D(_FogTex0, uv), tex2D(_FogTex1, uv), _Params.w);
-	
+
 				return lerp(lerp(original * _Unexplored, original * _Explored, fog.g), original, fog.r);
 			}
 			ENDCG

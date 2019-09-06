@@ -226,11 +226,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cff2f2b64195e1f41aa5ee8668ca28aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mTrans: {fileID: 0}
-  mRenderers: []
-  mNextUpdate: 0
-  mIsVisible: 1
-  mUpdate: 1
 --- !u!1 &103212855
 GameObject:
   m_ObjectHideFlags: 0
@@ -277,11 +272,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   layerMask:
+    serializedVersion: 2
     m_Bits: 1
   keyCode: 323
-  mTrans: {fileID: 0}
-  mTarget: {x: 0, y: 0, z: 0}
-  mMousePress: {x: 0, y: 0}
 --- !u!1 &185526707
 GameObject:
   m_ObjectHideFlags: 0
@@ -326,10 +319,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 334618935d48b2a4a8da34b69f73e2ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mTrans: {fileID: 0}
-  mMouse: {x: 0, y: 0, z: 0}
-  mTargetPos: {x: 0, y: 0, z: 0}
-  mTargetEuler: {x: 0, y: 0, z: 0}
 --- !u!1 &422485315
 GameObject:
   m_ObjectHideFlags: 0
@@ -373,7 +362,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d896faa75ea396d4baf03f14a79a912d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mTrans: {fileID: 0}
+  fieldOfView: 180
   range: {x: 2, y: 30}
   lineOfSightCheck: 2
   isActive: 1
@@ -483,11 +472,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cff2f2b64195e1f41aa5ee8668ca28aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mTrans: {fileID: 0}
-  mRenderers: []
-  mNextUpdate: 0
-  mIsVisible: 1
-  mUpdate: 1
 --- !u!1 &762624718
 GameObject:
   m_ObjectHideFlags: 0
@@ -852,11 +836,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   layerMask:
+    serializedVersion: 2
     m_Bits: 1
   keyCode: 324
-  mTrans: {fileID: 0}
-  mTarget: {x: 0, y: 0, z: 0}
-  mMousePress: {x: 0, y: 0}
 --- !u!1 &1357454846
 GameObject:
   m_ObjectHideFlags: 0
@@ -900,7 +882,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d896faa75ea396d4baf03f14a79a912d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mTrans: {fileID: 0}
+  fieldOfView: 180
   range: {x: 2, y: 30}
   lineOfSightCheck: 2
   isActive: 1
@@ -1019,26 +1001,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shader: {fileID: 4800000, guid: e2d2b5a643c600d49b42ee8d15a57e5a, type: 3}
-  mCam: {fileID: 0}
-  mFog: {fileID: 0}
-  mInverseMVP:
-    e00: 0
-    e01: 0
-    e02: 0
-    e03: 0
-    e10: 0
-    e11: 0
-    e12: 0
-    e13: 0
-    e20: 0
-    e21: 0
-    e22: 0
-    e23: 0
-    e30: 0
-    e31: 0
-    e32: 0
-    e33: 0
-  mMat: {fileID: 0}
 --- !u!1 &2064837642
 GameObject:
   m_ObjectHideFlags: 0

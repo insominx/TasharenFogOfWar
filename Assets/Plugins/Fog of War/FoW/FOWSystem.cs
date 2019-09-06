@@ -401,20 +401,11 @@ public class FOWSystem : MonoBehaviour
 		float lerpFactor = 0f;
 
     Vector3 facing = rot * Vector3.forward;
-    Vector3 direction = new Vector3(fx - sx, 0f, fy - sy);
-    float directionSquared = Vector3.Dot(direction, direction);
+    Vector3 direction = new Vector3(fx - sx, 0f, fy - sy).normalized;
 
-    // Math explanation
-    // _n => normalized vector
-    // _u => unnormalized vector
-    // dot product => a_n * b_n = cos(theta)
-    // dot product => a_u * b_n = ||a_u|| * cos(theta)
-    // We don't like square roots so lets multiply it out
-    // a_u * (a_u * b_n) = a_u * a_u * cos(theta)
+    float cosineAngle = Vector3.Dot(facing, direction);
 
-    float cosineAngle = Vector3.Dot(facing, direction) * directionSquared;
-
-    if (cosineAngle < fovCosine * directionSquared) {
+    if (cosineAngle < fovCosine) {
       return false;
     }
 

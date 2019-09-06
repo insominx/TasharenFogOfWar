@@ -984,7 +984,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: 85b56ff2b22070f4094f15f383d9ca29, type: 3}
       propertyPath: raycastRadius
-      value: .5
+      value: 0.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 85b56ff2b22070f4094f15f383d9ca29, type: 3}
@@ -1123,6 +1123,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d896faa75ea396d4baf03f14a79a912d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fieldOfView: 45
   range: {x: 2, y: 30}
   lineOfSightCheck: 2
   isActive: 1
@@ -1229,9 +1230,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1443889470}
   - component: {fileID: 1443889471}
-  - component: {fileID: 1443889473}
   - component: {fileID: 1443889474}
-  - component: {fileID: 1443889472}
   - component: {fileID: 1443889475}
   m_Layer: 0
   m_Name: Main Camera - FOWImageEffect
@@ -1297,22 +1296,6 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!81 &1443889472
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1443889469}
-  m_Enabled: 1
---- !u!92 &1443889473
-Behaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1443889469}
-  m_Enabled: 1
 --- !u!124 &1443889474
 Behaviour:
   m_ObjectHideFlags: 0
@@ -1490,7 +1473,7 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 1
+  m_Lightmapping: 4
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1

@@ -20,6 +20,14 @@ public class TSClickToMoveAgent : MonoBehaviour
 	{
 		if (Input.GetKeyDown(keyCode))
     {
+      mMousePress = Input.mousePosition;
+    }
+
+    // If the mouse down and up were close engouh, go ahead and use it
+    if (Input.GetKeyUp(keyCode))
+    {
+			if (Vector2.Distance(Input.mousePosition, mMousePress) > 5f) return;
+
 			RaycastHit hit;
 			Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 

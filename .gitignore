@@ -4,3 +4,4 @@ Library/
 Temp/
 Logs/
 .vscode/
+obj/

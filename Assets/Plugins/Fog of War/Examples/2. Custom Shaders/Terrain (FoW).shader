@@ -17,7 +17,7 @@ Shader "Fog of War/Terrain"
 		[HideInInspector] _MainTex ("BaseMap (RGB)", 2D) = "white" {}
 		[HideInInspector] _Color ("Main Color", Color) = (1,1,1,1)
 	}
-	
+
 	SubShader
 	{
 		Tags
@@ -28,6 +28,7 @@ Shader "Fog of War/Terrain"
 		}
 
 		CGPROGRAM
+    #pragma target 4.0 // todo - refactor to use less interpolators so this is not needed
 		#pragma surface surf Lambert vertex:vert
 
 		sampler2D _Control;

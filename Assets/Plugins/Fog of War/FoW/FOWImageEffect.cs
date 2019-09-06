@@ -102,7 +102,7 @@ public class FOWImageEffect : MonoBehaviour
 
 			if (pl == RuntimePlatform.WindowsEditor ||
 				pl == RuntimePlatform.WindowsPlayer ||
-				pl == RuntimePlatform.WindowsWebPlayer)
+				pl == RuntimePlatform.WebGLPlayer)
 			{
 				camPos.w = 1f;
 			}
